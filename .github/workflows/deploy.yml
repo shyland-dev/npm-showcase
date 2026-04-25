@@ -5,12 +5,19 @@ on:
     branches: [prod]
   pull_request:
     branches: [prod]
+  workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
 
 jobs:
-  build-and-deploy:
+  build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout do código
@@ -27,15 +34,30 @@ jobs:
 
       - name: Build da showcase (PR - apenas validação)
         if: github.event_name == 'pull_request'
-        run: npm run build:app
+        run: npm run build
 
-      - name: Build da showcase (push - com base href para gh-pages)
-        if: github.event_name == 'push'
-        run: npm run build:app -- --base-href /${{ github.event.repository.name }}/
+      - name: Build da showcase (push/manual - com base href para gh-pages)
+        if: github.event_name != 'pull_request'
+        run: npm run build -- --base-href /${{ github.event.repository.name }}/
 
-      - name: Deploy no GitHub Pages
-        if: github.event_name == 'push'
-        uses: peaceiris/actions-gh-pages@v3
+      - name: Setup Pages
+        if: github.event_name != 'pull_request'
+        uses: actions/configure-pages@v5
+
+      - name: Upload artifact
+        if: github.event_name != 'pull_request'
+        uses: actions/upload-pages-artifact@v3
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist/showcase/browser
+          path: ./dist/npm-showcase/browser
+
+  deploy:
+    if: github.event_name != 'pull_request'
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy no GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v5
