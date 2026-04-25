@@ -1,6 +1,9 @@
 {
   "name": "npm-showcase",
   "version": "0.0.0",
+  "engines": {
+    "node": "24.14.1"
+  },
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -16,8 +19,8 @@
     "@angular/forms": "^21.2.0",
     "@angular/platform-browser": "^21.2.0",
     "@angular/router": "^21.2.0",
-    "@shyland-dev/ui": "^0.0.4",
-    "@shyland-dev/utils": "^0.0.3",
+    "@shyland-dev/ui": "^0.0.5",
+    "@shyland-dev/utils": "^0.0.4",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0"
   },
