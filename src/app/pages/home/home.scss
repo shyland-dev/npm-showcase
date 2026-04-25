@@ -1,0 +1,7 @@
+@use '@shyland-dev/ui/styles' as *;
+
+:host {
+  display: block;
+  color: $primary;
+  padding: calc(var(--responsiveUnit) * 1);
+}

@@ -1,0 +1,117 @@
+@use '@shyland-dev/ui/styles' as *;
+
+:host {
+  color: $dark;
+}
+
+main {
+  position: relative;
+  @include fixedHeight(100%);
+  @include fixedWidth(100%);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  scroll-behavior: smooth;
+}
+
+router-outlet {
+  display: none;
+}
+
+header {
+  position: fixed;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: $medium;
+  @include fixedWidth(100%);
+  @include fixedHeight(var(--headerHeight));
+
+  > a {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    margin: 0;
+    font-size: calc(var(--responsiveUnit) * 2);
+    font-family: sans-serif;
+    font-weight: bolder;
+    color: $dark;
+    text-decoration: none;
+    @include allVendors(transition, all 250ms ease-in-out);
+
+    &:hover {
+      color: $white;
+    }
+  }
+
+  nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: calc(var(--responsiveUnit) * 0.5);
+    padding: calc(var(--responsiveUnit) * 0.5);
+    width: 100%;
+    background: $primary;
+
+    a {
+      font-size: calc(var(--responsiveUnit) * 1);
+      font-family: sans-serif;
+      color: $white;
+      text-decoration: none;
+      @include allVendors(transition, all 250ms ease-in-out);
+
+      &:hover {
+        color: $success;
+      }
+
+      &.active {
+        color: $warning;
+      }
+
+      &.active:hover {
+        color: $danger;
+      }
+    }
+  }
+}
+
+#main-content {
+  @include fixedWidth(100%);
+  margin-top: var(--headerHeight);
+  margin-bottom: var(--footerHeight);
+  min-height: var(--defaultContentHeight);
+  background: $dark;
+  overflow: auto;
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: $medium;
+  @include fixedWidth(100%);
+  @include fixedHeight(var(--footerHeight));
+
+  h2 {
+    font-size: calc(var(--responsiveUnit) * 1);
+    text-align: center;
+    font-family: sans-serif;
+
+    #heart {
+      color: $danger;
+    }
+
+    a {
+      color: $danger;
+      font-family: monospace;
+      @include allVendors(transition, all 250ms ease-in-out);
+
+      &:hover {
+        color: $tertiary;
+      }
+    }
+  }
+}

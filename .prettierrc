@@ -1,0 +1,29 @@
+{
+  "semi": true,
+  "printWidth": 9999,
+  "singleQuote": true,
+  "tabWidth": 2,
+  "useTabs": false,
+  "proseWrap": "preserve",
+  "overrides": [
+    {
+      "files": "*.html",
+      "options": {
+        "parser": "angular"
+      }
+    },
+    {
+      "files": "*.md",
+      "options": {
+        "tabWidth": 4,
+        "proseWrap": "preserve"
+      }
+    },
+    {
+      "files": "*.ts",
+      "options": {
+        "parser": "typescript"
+      }
+    }
+  ]
+}

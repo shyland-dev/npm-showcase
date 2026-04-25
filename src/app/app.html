@@ -1,0 +1,23 @@
+<main>
+  <header>
+    <a href="https://github.com/shyland-dev/npm-showcase" target="_blank">npm-showcase</a>
+
+    <nav>
+      @for (route of navRoutes; track $index) {
+        <a [routerLink]="route.path" routerLinkActive="active">{{ route.path }}</a>
+      }
+    </nav>
+  </header>
+
+  <div id="main-content">
+    <router-outlet />
+  </div>
+
+  <footer>
+    <h2>
+      Made with <span id="heart">&#10084;</span>
+      <br />
+      by <a href="https://github.com/shyland-dev" target="_blank">shyland-dev</a>
+    </h2>
+  </footer>
+</main>
