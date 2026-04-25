@@ -48,6 +48,10 @@ jobs:
         if: github.event_name != 'pull_request'
         uses: actions/configure-pages@v5
 
+      - name: Copiar index.html como 404.html (SPA fallback)
+        if: github.event_name != 'pull_request'
+        run: cp ./dist/npm-showcase/browser/index.html ./dist/npm-showcase/browser/404.html
+
       - name: Upload artifact
         if: github.event_name != 'pull_request'
         uses: actions/upload-pages-artifact@v3
