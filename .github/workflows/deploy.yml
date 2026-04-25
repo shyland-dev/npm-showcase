@@ -28,9 +28,13 @@ jobs:
         with:
           node-version-file: '.nvmrc'
           cache: 'npm'
+          registry-url: 'https://npm.pkg.github.com'
+          scope: '@shyland-dev'
 
       - name: Instalar dependências
         run: npm ci
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build da showcase (PR - apenas validação)
         if: github.event_name == 'pull_request'
