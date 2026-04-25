@@ -1,0 +1,41 @@
+name: Deploy
+
+on:
+  push:
+    branches: [prod]
+  pull_request:
+    branches: [prod]
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout do código
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+          cache: 'npm'
+
+      - name: Instalar dependências
+        run: npm ci
+
+      - name: Build da showcase (PR - apenas validação)
+        if: github.event_name == 'pull_request'
+        run: npm run build:app
+
+      - name: Build da showcase (push - com base href para gh-pages)
+        if: github.event_name == 'push'
+        run: npm run build:app -- --base-href /${{ github.event.repository.name }}/
+
+      - name: Deploy no GitHub Pages
+        if: github.event_name == 'push'
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist/showcase/browser
