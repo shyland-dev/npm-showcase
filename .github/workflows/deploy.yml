@@ -34,7 +34,7 @@ jobs:
       - name: Instalar dependências
         run: npm ci
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.GH_PACKAGES_TOKEN }}
 
       - name: Build da showcase (PR - apenas validação)
         if: github.event_name == 'pull_request'
