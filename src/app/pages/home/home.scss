@@ -5,3 +5,25 @@
   color: $primary;
   padding: calc(var(--responsiveUnit) * 1);
 }
+
+button {
+  padding: calc(var(--responsiveUnit) * 0.5) calc(var(--responsiveUnit) * 1);
+  font-size: calc(var(--responsiveUnit) * 1);
+  font-family: sans-serif;
+  color: $white;
+  background: $primary;
+  border: none;
+  border-radius: calc(var(--responsiveUnit) * 0.25);
+  cursor: pointer;
+  @include allVendors(transition, background 250ms ease-in-out);
+
+  &:hover {
+    background: $medium;
+  }
+}
+
+shy-icon {
+  margin: calc(var(--responsiveUnit) * 0.5);
+  font-size: calc(var(--responsiveUnit) * 2);
+  color: $danger;
+}
