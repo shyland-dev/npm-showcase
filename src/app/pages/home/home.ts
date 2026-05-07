@@ -30,7 +30,7 @@ export class Home implements OnInit, OnDestroy {
     this.snackbarService.show({
       element: this.snackbar,
       text: 'Olá, eu sou um Snackbar!',
-      delay: 30000,
+      delay: 3000,
     });
   }
 }
