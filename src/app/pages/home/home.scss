@@ -2,28 +2,28 @@
 
 :host {
   display: block;
-  color: $primary;
-  padding: calc(var(--responsiveUnit) * 1);
+  color: $color-primary;
+  padding: calc(#{$responsive-unit} * 2);
 }
 
 button {
-  padding: calc(var(--responsiveUnit) * 0.5) calc(var(--responsiveUnit) * 1);
-  font-size: calc(var(--responsiveUnit) * 1);
+  padding: calc(#{$responsive-unit} * 5) calc(#{$responsive-unit} * 6);
+  font-size: calc(#{$responsive-unit} * 10);
   font-family: sans-serif;
-  color: $white;
-  background: $primary;
+  color: $color-white;
+  background: $color-primary;
   border: none;
-  border-radius: calc(var(--responsiveUnit) * 0.25);
+  border-radius: calc(#{$responsive-unit} * 2);
   cursor: pointer;
   @include allVendors(transition, background 250ms ease-in-out);
 
   &:hover {
-    background: $medium;
+    background: $color-medium;
   }
 }
 
 shy-icon {
-  margin: calc(var(--responsiveUnit) * 0.5);
-  font-size: calc(var(--responsiveUnit) * 2);
-  color: $danger;
+  margin: calc(#{$responsive-unit} * 5);
+  font-size: calc(#{$responsive-unit} * 15);
+  color: $color-danger;
 }

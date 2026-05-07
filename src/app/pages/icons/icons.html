@@ -1,10 +1,10 @@
 <div class="icons-grid">
   @for (name of iconNames; track name) {
-    <div class="icon-item" (click)="copyIcon(name)">
-      <shy-icon>{{ name }}</shy-icon>
+  <div class="icon-item" (click)="copyIcon(name)">
+    <shy-icon>{{ name }}</shy-icon>
 
-      <span class="icon-name">{{ name }}</span>
-    </div>
+    <span class="icon-name">{{ name }}</span>
+  </div>
   }
 </div>
 

@@ -3,8 +3,8 @@
 
 :host {
   display: block;
-  color: $black;
-  padding: calc(var(--responsiveUnit) * 1);
+  color: $color-black;
+  padding: calc(#{$responsive-unit} * 2);
 }
 
 .icons-grid {
@@ -12,44 +12,48 @@
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  gap: calc(var(--responsiveUnit) * 1);
+  gap: calc(#{$responsive-unit} * 5);
 
   .icon-item {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
-    gap: calc(var(--responsiveUnit) * 0.5);
-    background-color: color.adjust($danger, $lightness: 32.5%);
-    padding: calc(var(--responsiveUnit) * 0.5);
-    border-radius: calc(var(--responsiveUnit) * 0.5);
-    border-color: $danger;
-    border-width: calc(var(--responsiveUnit) * 0.1);
+    gap: calc(#{$responsive-unit} * 5);
+    background-color: color.adjust($color-danger, $lightness: 32.5%);
+    padding: calc(#{$responsive-unit} * 5);
+    border-radius: calc(#{$responsive-unit} * 2);
+    border-color: $color-danger;
+    border-width: calc(#{$responsive-unit} * 1);
     border-style: solid;
-    height: calc(var(--responsiveUnit) * 6);
-    width: calc(var(--responsiveUnit) * 5);
+    height: calc(#{$responsive-unit} * 50);
+    width: calc(#{$responsive-unit} * 45);
     cursor: pointer;
     @include allVendors(transition, all 250ms ease-in-out);
 
     &:hover {
-      background-color: color.adjust($danger, $lightness: 20%);
+      background-color: color.adjust($color-danger, $lightness: 20%);
     }
 
     shy-icon {
-      --shyIconSize: calc(var(--responsiveUnit) * 2);
-      color: $danger;
+      --shyIconSize: calc(#{$responsive-unit} * 17);
+
+      color: $color-danger;
     }
 
     .icon-name {
-      font-size: calc(var(--responsiveUnit) * 0.75);
+      font-size: calc(#{$responsive-unit} * 7.5);
       text-align: center;
     }
   }
 }
 
 shy-snackbar {
-  --shySnackbarBg: #{$success};
-  --shySnackbarColor: #{$white};
-  --shySnackbarMinWidth: calc(var(--responsiveUnit) * 30);
-  --shySnackbarMaxWidth: calc(var(--responsiveUnit) * 40);
+  --shySnackbarBackground: #{$color-success};
+  --shySnackbarColor: #{$color-white};
+  --shySnackbarWidth: calc(#{$responsive-unit} * 110);
+  --shySnackbarFontFamily: sans-serif;
+  --shySnackbarFontSize: calc(#{$responsive-unit} * 7);
+  --shySnackbarIconSize: calc(#{$responsive-unit} * 8);
+  --shySnackbarOffset: calc(#{$responsive-unit} * 15);
 }

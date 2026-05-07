@@ -1,7 +1,8 @@
 @use '@shyland-dev/ui/styles' as *;
+@use '../styles.scss' as *;
 
 :host {
-  color: $dark;
+  color: $color-dark;
 }
 
 main {
@@ -24,24 +25,24 @@ header {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: $medium;
+  background: $color-medium;
   @include fixedWidth(100%);
-  @include fixedHeight(var(--headerHeight));
+  @include fixedHeight($header-height);
 
   > a {
     flex: 1;
     display: flex;
     align-items: center;
     margin: 0;
-    font-size: calc(var(--responsiveUnit) * 2);
+    font-size: calc(#{$responsive-unit} * 12);
     font-family: sans-serif;
     font-weight: bolder;
-    color: $dark;
+    color: $color-dark;
     text-decoration: none;
     @include allVendors(transition, all 250ms ease-in-out);
 
     &:hover {
-      color: $white;
+      color: $color-white;
     }
   }
 
@@ -49,28 +50,28 @@ header {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: calc(var(--responsiveUnit) * 0.5);
-    padding: calc(var(--responsiveUnit) * 0.5);
+    gap: calc(#{$responsive-unit} * 5);
+    padding: calc(#{$responsive-unit} * 3);
     width: 100%;
-    background: $primary;
+    background: $color-primary;
 
     a {
-      font-size: calc(var(--responsiveUnit) * 1);
+      font-size: calc(#{$responsive-unit} * 7);
       font-family: sans-serif;
-      color: $white;
+      color: $color-white;
       text-decoration: none;
       @include allVendors(transition, all 250ms ease-in-out);
 
       &:hover {
-        color: $success;
+        color: $color-success;
       }
 
       &.active {
-        color: $warning;
+        color: $color-warning;
       }
 
       &.active:hover {
-        color: $danger;
+        color: $color-danger;
       }
     }
   }
@@ -78,10 +79,10 @@ header {
 
 #main-content {
   @include fixedWidth(100%);
-  margin-top: var(--headerHeight);
-  margin-bottom: var(--footerHeight);
-  min-height: var(--defaultContentHeight);
-  background: $dark;
+  margin-top: $header-height;
+  margin-bottom: $footer-height;
+  min-height: $default-content-height;
+  background: $color-dark;
   overflow: auto;
 }
 
@@ -91,26 +92,26 @@ footer {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: $medium;
+  background: $color-medium;
   @include fixedWidth(100%);
-  @include fixedHeight(var(--footerHeight));
+  @include fixedHeight($footer-height);
 
   h2 {
-    font-size: calc(var(--responsiveUnit) * 1);
+    font-size: calc(#{$responsive-unit} * 7);
     text-align: center;
     font-family: sans-serif;
 
     #heart {
-      color: $danger;
+      color: $color-danger;
     }
 
     a {
-      color: $danger;
+      color: $color-danger;
       font-family: monospace;
       @include allVendors(transition, all 250ms ease-in-out);
 
       &:hover {
-        color: $tertiary;
+        color: $color-tertiary;
       }
     }
   }

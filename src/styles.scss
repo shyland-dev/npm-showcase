@@ -1,1 +1,44 @@
-@use '@shyland-dev/ui/styles/base';
+@use '@shyland-dev/ui/styles' as *;
+
+$header-height: calc(#{$responsive-unit} * 35);
+$footer-height: calc(#{$responsive-unit} * 25);
+$scrollbar-width: calc(#{$responsive-unit} * 5);
+$scrollbar-color-track: $color-dark;
+$scrollbar-color-thumb: $color-light;
+$scrollbar-color-thumb-hover: $color-medium;
+$default-content-height: calc(#{$dynamic-height} - #{$header-height} - #{$footer-height});
+
+::-webkit-scrollbar {
+  width: $scrollbar-width;
+}
+
+::-webkit-scrollbar-track {
+  background: $scrollbar-color-track;
+}
+
+::-webkit-scrollbar-thumb {
+  background: $scrollbar-color-thumb;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: $scrollbar-color-thumb-hover;
+}
+
+html,
+body,
+app-root {
+  display: block;
+  height: $dynamic-height;
+  width: $dynamic-width;
+  border: 0;
+  overscroll-behavior: none;
+  font-family: monospace;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
