@@ -1,33 +1,63 @@
+@use '../../../styles' as *;
 @use '@shyland-dev/ui/styles' as *;
 @use 'sass:color';
 
+$input-margin-block: calc(#{$responsive-unit} * 2);
+$input-height: calc(#{$responsive-unit} * 15);
+
+$grid-margin-block: calc(#{$responsive-unit} * 2);
+$grid-height: calc(#{$default-content-height} - #{$input-height} - #{$input-margin-block} * 2 - #{$grid-margin-block} * 2);
+
 :host {
-  display: block;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   color: $color-black;
-  padding: calc(#{$responsive-unit} * 2);
+}
+
+.icon-search {
+  border: none;
+  outline: none;
+  padding: calc(#{$responsive-unit} * 4);
+  border-radius: calc(#{$responsive-unit} * 2);
+  background-color: $color-danger;
+  border-width: calc(#{$responsive-unit} * 1);
+  border-color: $color-white;
+  border-style: solid;
+  width: calc(#{$dynamic-width-unit} * 50);
+  font-size: calc(#{$responsive-unit} * 8);
+  margin-block: $input-margin-block;
+  height: $input-height;
+  color: $color-white;
+
+  &::placeholder {
+    color: color.adjust($color-white, $alpha: -0.3);
+  }
 }
 
 .icons-grid {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  align-items: center;
-  gap: calc(#{$responsive-unit} * 5);
+  gap: calc(#{$responsive-unit} * 6);
+  margin-block: $grid-margin-block;
+  overflow-y: auto;
+  height: $grid-height;
 
   .icon-item {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-around;
-    gap: calc(#{$responsive-unit} * 5);
+    justify-content: space-between;
+    gap: calc(#{$responsive-unit} * 8);
     background-color: color.adjust($color-danger, $lightness: 32.5%);
     padding: calc(#{$responsive-unit} * 5);
     border-radius: calc(#{$responsive-unit} * 2);
     border-color: $color-danger;
     border-width: calc(#{$responsive-unit} * 1);
     border-style: solid;
-    height: calc(#{$responsive-unit} * 50);
-    width: calc(#{$responsive-unit} * 45);
+    width: calc(#{$responsive-unit} * 95);
     cursor: pointer;
     @include allVendors(transition, all 250ms ease-in-out);
 
@@ -42,7 +72,7 @@
     }
 
     .icon-name {
-      font-size: calc(#{$responsive-unit} * 7.5);
+      font-size: calc(#{$responsive-unit} * 6);
       text-align: center;
     }
   }

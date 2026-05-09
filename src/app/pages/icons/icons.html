@@ -1,3 +1,5 @@
+<input class="icon-search" type="search" name="iconSearch" id="iconSearch" placeholder="Search icons..." [(ngModel)]="searchTerm" (ngModelChange)="search()" />
+
 <div class="icons-grid">
   @for (name of iconNames; track name) {
   <div class="icon-item" (click)="copyIcon(name)">

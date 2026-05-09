@@ -1,17 +1,21 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { IconComponent, ICONS, SnackbarComponent, SnackbarService } from '@shyland-dev/ui';
 import { DebugService } from '@shyland-dev/utils';
 
 @Component({
   selector: 'app-icons',
-  imports: [IconComponent, SnackbarComponent],
+  imports: [IconComponent, SnackbarComponent, FormsModule],
   templateUrl: './icons.html',
   styleUrl: './icons.scss',
 })
 export class Icons implements OnInit, OnDestroy {
   @ViewChild('snackbar') snackbar!: SnackbarComponent;
 
-  iconNames = Object.keys(ICONS).filter((name) => !name.endsWith('-filled'));
+  allIconNames = Object.keys(ICONS);
+  iconNames = this.allIconNames
+
+  searchTerm: string = '';
 
   constructor(
     private debugService: DebugService,
@@ -35,5 +39,14 @@ export class Icons implements OnInit, OnDestroy {
       text: `Copiado: <shy-icon>${name}</shy-icon>`,
       delay: 2500,
     });
+  }
+
+  search(): void {
+    const term = this.searchTerm.trim().toLowerCase();
+    if (term) {
+      this.iconNames = this.allIconNames.filter(name => name.includes(term));
+    } else {
+      this.iconNames = this.allIconNames;
+    }
   }
 }
