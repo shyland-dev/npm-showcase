@@ -9,7 +9,6 @@ on:
 
 permissions:
   contents: read
-  packages: read
   pages: write
   id-token: write
 
@@ -28,13 +27,9 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version-file: '.nvmrc'
-          registry-url: 'https://npm.pkg.github.com'
-          scope: '@shyland-dev'
 
       - name: Instalar dependências
         run: npm ci
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build da showcase (PR - apenas validação)
         if: github.event_name == 'pull_request'
