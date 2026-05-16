@@ -29,12 +29,12 @@ shy-icon {
 }
 
 shy-select {
-  --shySelectHeight: calc(#{$responsive-unit} * 50);
+  --shySelectHeight: calc(#{$responsive-unit} * 20);
   --shySelectWidth: calc(#{$responsive-unit} * 90);
   --shySelectBorderRadius: calc(#{$responsive-unit} * 2);
-  --shySelectBackground: #{$color-dark};
+  --shySelectBackground: #{$color-black};
   --shySelectColor: #{$color-white};
   --shySelectFontFamily: monospace;
-  --shySelectFontSize: calc(#{$responsive-unit} * 7);
+  --shySelectFontSize: calc(#{$responsive-unit} * 6);
   --shySelectIconSize: calc(#{$responsive-unit} * 8);
 }
