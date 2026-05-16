@@ -19,7 +19,7 @@
     "@angular/forms": "^21.2.0",
     "@angular/platform-browser": "^21.2.0",
     "@angular/router": "^21.2.0",
-    "@shyland-dev/ui": "^0.0.15",
+    "@shyland-dev/ui": "^0.0.16-beta.2",
     "@shyland-dev/utils": "^0.0.6",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0"

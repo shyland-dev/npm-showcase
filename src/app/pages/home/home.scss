@@ -27,3 +27,14 @@ shy-icon {
   font-size: calc(#{$responsive-unit} * 15);
   color: $color-danger;
 }
+
+shy-select {
+  --shySelectHeight: calc(#{$responsive-unit} * 50);
+  --shySelectWidth: calc(#{$responsive-unit} * 90);
+  --shySelectBorderRadius: calc(#{$responsive-unit} * 2);
+  --shySelectBackground: #{$color-dark};
+  --shySelectColor: #{$color-white};
+  --shySelectFontFamily: monospace;
+  --shySelectFontSize: calc(#{$responsive-unit} * 7);
+  --shySelectIconSize: calc(#{$responsive-unit} * 8);
+}

@@ -84,6 +84,7 @@ shy-snackbar {
   --shySnackbarBackground: #{$color-success};
   --shySnackbarColor: #{$color-white};
   --shySnackbarWidth: calc(#{$responsive-unit} * 110);
+  --shySnackbarBorderRadius: calc(#{$responsive-unit} * 2);
   --shySnackbarFontFamily: sans-serif;
   --shySnackbarFontSize: calc(#{$responsive-unit} * 7);
   --shySnackbarIconSize: calc(#{$responsive-unit} * 8);
