@@ -1,23 +1,55 @@
-<main>
-  <header>
-    <a href="https://github.com/shyland-dev/npm-showcase" target="_blank">npm-showcase</a>
+@if (embedded) {
+  <ng-container *ngTemplateOutlet="shell" />
+} @else {
+  <div class="app">
+    <header class="bar" aria-label="Controles do showcase">
+      <strong class="brand"><shy-icon name="layers" />SHYLAND UI</strong>
+      <div class="devices" role="group" aria-label="Simular dispositivo">
+        @for (d of devices; track d.id) {
+          <button shyIconButton type="button" size="sm" [label]="d.label" [shyTooltip]="d.label" [variant]="deviceService.id() === d.id ? 'solid' : 'ghost'" [attr.aria-pressed]="deviceService.id() === d.id" (click)="deviceService.set(d.id)">
+            <shy-icon [name]="d.icon" />
+          </button>
+        }
+        @if (simulating() && device().canRotate) {
+          <button shyIconButton type="button" size="sm" label="Girar dispositivo" shyTooltip="Girar (retrato/paisagem)" variant="outline" (click)="deviceService.rotated.set(!deviceService.rotated())">
+            <shy-icon name="arrow-repeat" />
+          </button>
+        }
+      </div>
+      <span class="hint">{{ simulating() ? frameBox().w + '×' + frameBox().h + ' · escala ' + (frameBox().scale * 100).toFixed(0) + '%' : portrait() ? 'Retrato' : 'Paisagem' }}</span>
+      <shy-theme-toggle [labels]="themeLabels" />
+    </header>
 
-    <nav>
-      @for (route of navRoutes; track $index) {
-        <a [routerLink]="route.path" routerLinkActive="active">{{ route.path }}</a>
+    @if (simulating()) {
+      <div class="stage" #stage>
+        <div class="device" [style.inline-size.px]="frameBox().boxW" [style.block-size.px]="frameBox().boxH">
+          @if (frameSrc(); as src) {
+            <iframe #frame title="Showcase no dispositivo simulado" [src]="src" (load)="onFrameLoad()" [style.inline-size.px]="frameBox().w" [style.block-size.px]="frameBox().h" [style.transform]="'scale(' + frameBox().scale + ')'"></iframe>
+          }
+        </div>
+      </div>
+    } @else {
+      <ng-container *ngTemplateOutlet="shell" />
+    }
+  </div>
+}
+
+<ng-template #shell>
+  <shy-app-shell [sidebarMode]="portrait() ? 'drawer' : 'inline'" sidebarLabel="Componentes" menuLabel="Abrir navegação" skipLabel="Pular para o conteúdo">
+    <a slot="header" class="title" routerLink="/visao-geral">Catálogo de componentes</a>
+    <nav slot="sidebar" class="menu" aria-label="Catálogo">
+      @for (g of nav; track g.label) {
+        <p class="shy-overline group">{{ g.label }}</p>
+        <ul>
+          @for (i of g.items; track i.path) {
+            <li>
+              <a [routerLink]="'/' + i.path" routerLinkActive="active" ariaCurrentWhenActive="page"><shy-icon [name]="i.icon" />{{ i.label }}</a>
+            </li>
+          }
+        </ul>
       }
     </nav>
-  </header>
-
-  <div id="main-content">
     <router-outlet />
-  </div>
-
-  <footer>
-    <h2>
-      Made with <span id="heart">&#10084;</span>
-      <br />
-      by <a href="https://github.com/shyland-dev" target="_blank">shyland-dev</a>
-    </h2>
-  </footer>
-</main>
+    <span slot="footer" class="foot">@shyland-dev/ui · feito pela SHYLAND DEV</span>
+  </shy-app-shell>
+</ng-template>

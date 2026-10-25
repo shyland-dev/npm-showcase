@@ -1,0 +1,44 @@
+<div class="page">
+  <app-page-header title="Ações" summary="Botões em todos os estilos, intenções, tamanhos e estados." [sections]="sections" />
+
+  <div class="demos">
+    <app-demo class="wide" anchor="button" title="Button" description="5 variantes × 6 intenções. Use no elemento nativo (button ou a)." code='<button shyButton variant="soft" intent="danger">Excluir</button>'>
+      <div class="matrix">
+        @for (v of variants; track v) {
+          <div class="row">
+            @for (i of intents; track i) {
+              <button shyButton type="button" [variant]="v" [intent]="i">{{ v }} · {{ i }}</button>
+            }
+          </div>
+        }
+      </div>
+    </app-demo>
+
+    <app-demo anchor="button-sizes" title="Tamanhos e ícones" code='<button shyButton size="lg"><shy-icon slot="start" name="download" />Baixar</button>'>
+      <button shyButton size="sm">Pequeno</button>
+      <button shyButton size="md">Médio</button>
+      <button shyButton size="lg">Grande</button>
+      <button shyButton><shy-icon slot="start" name="download" />Baixar</button>
+      <button shyButton variant="outline">Próximo<shy-icon slot="end" name="arrow-right" /></button>
+      <a shyButton variant="link" href="https://github.com/shyland-dev/npm" target="_blank" rel="noopener">Link (a)</a>
+    </app-demo>
+
+    <app-demo anchor="button-states" title="Estados" description="Desabilitado, carregando e largura total.">
+      <button shyButton disabled>Desabilitado</button>
+      <button shyButton [loading]="saving()" loadingPosition="start" loadingText="Salvando…" (click)="save()"><shy-icon slot="start" name="check-lg" />Salvar (clique)</button>
+      <button shyButton variant="outline" [loading]="saving()" (click)="save()">Replace</button>
+      <button shyButton block variant="soft">Largura total</button>
+    </app-demo>
+
+    <app-demo class="wide" anchor="icon-button" title="IconButton" description="Só ícone: label vira o aria-label. Toque ≥ 44 px em telas de toque." code='<button shyIconButton label="Fechar"><shy-icon name="x-lg" /></button>'>
+      @for (v of iconVariants; track v) {
+        <button shyIconButton type="button" [variant]="v" [label]="'Editar ' + v" [shyTooltip]="'Editar (' + v + ')'"><shy-icon name="pencil" /></button>
+      }
+      <button shyIconButton intent="danger" variant="soft" label="Excluir" shyTooltip="Excluir"><shy-icon name="trash" /></button>
+      <button shyIconButton size="sm" label="Menor"><shy-icon name="plus-lg" /></button>
+      <button shyIconButton size="lg" label="Maior"><shy-icon name="plus-lg" /></button>
+      <button shyIconButton variant="outline" [label]="liked() ? 'Descurtir' : 'Curtir'" [attr.aria-pressed]="liked()" (click)="liked.set(!liked())"><shy-icon [name]="liked() ? 'heart-fill' : 'heart'" /></button>
+      <button shyIconButton label="Desabilitado" disabled><shy-icon name="lock" /></button>
+    </app-demo>
+  </div>
+</div>

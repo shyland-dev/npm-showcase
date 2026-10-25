@@ -1,0 +1,122 @@
+<div class="page">
+  <app-page-header title="Formulários" summary="Controles nativos por baixo (ngModel, formControl e formControlName funcionam sem ControlValueAccessor próprio), com label, dica, erro e contador." [sections]="sections" />
+
+  <div class="demos">
+    <app-demo class="wide" anchor="signup" title="Cadastro completo" description="Reactive Forms com validação: erros aparecem ao tocar no campo ou ao enviar. Tente enviar vazio." code='<shy-form-field label="E-mail" [error]="emailError()">&#10;  <input shyInput type="email" formControlName="email" required />&#10;</shy-form-field>'>
+      <form [formGroup]="signup" (ngSubmit)="submit()" novalidate>
+        <shy-form-field label="Nome" hint="Como quer ser chamado" error="Mínimo de 3 letras" [counter]="true">
+          <shy-icon slot="prefix" name="person-fill" />
+          <input shyInput formControlName="name" autocomplete="name" required maxlength="40" />
+        </shy-form-field>
+
+        <shy-form-field label="E-mail" [error]="emailError()">
+          <shy-icon slot="prefix" name="envelope" />
+          <input shyInput type="email" formControlName="email" autocomplete="email" inputmode="email" required />
+        </shy-form-field>
+
+        <shy-form-field label="Senha" hint="Mínimo de 8 caracteres" error="A senha precisa de 8 caracteres">
+          <shy-icon slot="prefix" name="lock" />
+          <input shyInput [type]="showPassword() ? 'text' : 'password'" formControlName="password" autocomplete="new-password" required />
+          <button slot="suffix" shyIconButton type="button" size="sm" [label]="showPassword() ? 'Ocultar senha' : 'Mostrar senha'" (click)="showPassword.set(!showPassword())"><shy-icon [name]="showPassword() ? 'eye-slash' : 'eye'" /></button>
+        </shy-form-field>
+
+        <shy-form-field label="País" error="Escolha um país" [required]="true">
+          <shy-select [options]="countries" formControlName="country" placeholder="Selecione" />
+        </shy-form-field>
+
+        <shy-form-field label="Interesses">
+          <shy-select [options]="topics" formControlName="topics" multiple placeholder="Escolha vários" />
+        </shy-form-field>
+
+        <shy-form-field label="Plano">
+          <shy-radio-group formControlName="plan" orientation="horizontal">
+            <shy-radio value="free">Grátis</shy-radio>
+            <shy-radio value="pro">Pro</shy-radio>
+            <shy-radio value="team">Time</shy-radio>
+          </shy-radio-group>
+        </shy-form-field>
+
+        <shy-switch formControlName="newsletter">Receber novidades por e-mail</shy-switch>
+        <shy-form-field error="Aceite os termos para continuar">
+          <shy-checkbox formControlName="terms" [required]="true">Li e aceito os termos de uso</shy-checkbox>
+        </shy-form-field>
+
+        <div class="actions">
+          <button shyButton type="submit" [loading]="submitting()" loadingPosition="start" loadingText="Criando…"><shy-icon slot="start" name="check-lg" />Criar conta</button>
+          <button shyButton type="button" variant="ghost" intent="neutral" (click)="signup.reset({ plan: 'pro', newsletter: true, terms: false, topics: [] })">Limpar</button>
+        </div>
+      </form>
+    </app-demo>
+
+    <app-demo anchor="input" title="Input e textarea" description="Tamanhos, prefixo/sufixo, estado inválido e desabilitado.">
+      <div class="col">
+        <shy-form-field label="Pequeno" size="sm"><input shyInput placeholder="sm" /></shy-form-field>
+        <shy-form-field label="Grande" size="lg"><input shyInput placeholder="lg" /></shy-form-field>
+        <shy-form-field label="Busca"><shy-icon slot="prefix" name="search" /><input shyInput type="search" placeholder="Buscar componentes" /></shy-form-field>
+        <shy-form-field label="Inválido" error="Valor incorreto" [invalid]="true"><input shyInput value="abc" /></shy-form-field>
+        <shy-form-field label="Desabilitado"><input shyInput disabled value="Somente leitura" /></shy-form-field>
+        <shy-form-field label="Mensagem" hint="Máx. 120 caracteres" [counter]="true"><textarea shyInput rows="3" maxlength="120"></textarea></shy-form-field>
+      </div>
+    </app-demo>
+
+    <app-demo anchor="checkbox" title="Checkbox e Switch" description="Indeterminado, desabilitado e dois sentidos com [(checked)]." code='<shy-checkbox [(checked)]="ok">Aceito</shy-checkbox>'>
+      <div class="col">
+        <shy-checkbox [checked]="all()" [indeterminate]="some()" (checkedChange)="toggleAll($event)">Selecionar todos (indeterminado)</shy-checkbox>
+        <shy-checkbox [checked]="true">Marcado</shy-checkbox>
+        <shy-checkbox disabled>Desabilitado</shy-checkbox>
+        <shy-switch [(checked)]="notify">Notificações {{ notify() ? 'ligadas' : 'desligadas' }}</shy-switch>
+        <shy-switch disabled>Desabilitado</shy-switch>
+      </div>
+    </app-demo>
+
+    <app-demo anchor="radio" title="Radio" description="Setas movem e selecionam; desabilitados são pulados.">
+      <div class="col">
+        <shy-radio-group label="Plano" [(value)]="plan">
+          <shy-radio value="free">Grátis</shy-radio>
+          <shy-radio value="pro">Pro</shy-radio>
+          <shy-radio value="team" disabled>Time (indisponível)</shy-radio>
+        </shy-radio-group>
+        <shy-radio-group label="Entrega" orientation="horizontal" [(value)]="orientationPlan">
+          <shy-radio value="a">Normal</shy-radio>
+          <shy-radio value="b">Expressa</shy-radio>
+        </shy-radio-group>
+        <span class="value">Escolhido: {{ plan() }} · {{ orientationPlan() }}</span>
+      </div>
+    </app-demo>
+
+    <app-demo anchor="select" title="Select" description="Combobox somente-seleção no overlay; vira lista de baixo para cima quando falta espaço." code='<shy-select [options]="countries" [(value)]="country" label="País" />'>
+      <div class="col">
+        <shy-select [options]="countries" [(value)]="country" label="País" placeholder="Escolha um país" />
+        <shy-select [options]="topics" [(value)]="selectedTopics" multiple label="Tópicos" placeholder="Tópicos" />
+        <shy-select [options]="countries" label="Desabilitado" disabled placeholder="Desabilitado" />
+        <span class="value">Valor: {{ country() }} · {{ selectedTopics().join(', ') }}</span>
+      </div>
+    </app-demo>
+
+    <app-demo anchor="combobox" title="Combobox" description="Digite para filtrar (sem acento e sem diferenciar maiúsculas). Valor único, sem texto livre.">
+      <div class="col">
+        <shy-form-field label="País" hint="Digite “can” ou “ar”">
+          <shy-combobox [options]="countries" [(value)]="comboCountry" placeholder="Buscar país" emptyText="Nada encontrado" />
+        </shy-form-field>
+        <span class="value">Valor: {{ comboCountry() ?? '—' }}</span>
+      </div>
+    </app-demo>
+
+    <app-demo anchor="slider" title="Slider" description="Baseado em input range nativo: setas, Page Up/Down, Home/End.">
+      <div class="col">
+        <shy-slider [(value)]="volume" label="Volume" showValue [displayWith]="percent" />
+        <shy-form-field label="Preço máximo"><shy-slider [formControl]="price" [min]="0" [max]="1000" [step]="50" [displayWith]="money" showValue /></shy-form-field>
+        <shy-slider [value]="20" label="Desabilitado" disabled />
+      </div>
+    </app-demo>
+
+    <app-demo class="wide" anchor="dropzone" title="FileDropzone" description="Escolhe e valida arquivos (nunca envia). Aceita imagens e PDF até 1 MB; recusados disparam (rejected).">
+      <div class="col">
+        <shy-form-field label="Anexos" hint="Imagens ou PDF, até 1 MB cada">
+          <shy-file-dropzone [formControl]="docs" accept="image/*,.pdf" [maxSize]="1048576" multiple prompt="Arraste arquivos aqui ou toque para escolher" removeLabel="Remover" (rejected)="onRejected($event)" />
+        </shy-form-field>
+        <shy-file-dropzone [(files)]="avatar" label="Avatar" accept="image/*" prompt="Arraste seu avatar" />
+      </div>
+    </app-demo>
+  </div>
+</div>

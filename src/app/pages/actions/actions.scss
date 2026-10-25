@@ -1,0 +1,11 @@
+.matrix {
+  display: grid;
+  gap: var(--shy-space-3);
+  inline-size: 100%;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--shy-space-3);
+}

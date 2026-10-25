@@ -1,11 +1,23 @@
 <!doctype html>
-<html lang="en">
+<html lang="pt-BR">
   <head>
     <meta charset="utf-8" />
-    <title>NpmShowcase</title>
+    <title>SHYLAND UI Showcase</title>
     <base href="/" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="color-scheme" content="dark light" />
     <link rel="icon" type="image/x-icon" href="favicon.ico" />
+    <script>
+      (function () {
+        try {
+          var mode = localStorage.getItem('shy-theme');
+          if (mode !== 'light' && mode !== 'system') mode = 'dark';
+          var light = mode === 'light' || (mode === 'system' && matchMedia('(prefers-color-scheme: light)').matches);
+          document.documentElement.setAttribute('data-theme', light ? 'light' : 'dark');
+          document.documentElement.setAttribute('data-theme-mode', mode);
+        } catch (e) {}
+      })();
+    </script>
   </head>
 
   <body>

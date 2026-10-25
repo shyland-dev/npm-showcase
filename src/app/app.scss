@@ -1,118 +1,107 @@
 @use '@shyland-dev/ui/styles' as *;
-@use '../styles.scss' as *;
 
-:host {
-  color: $color-dark;
+.app {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  min-block-size: var(--shy-dynamic-height);
 }
 
-main {
-  position: relative;
-  @include fixedHeight(100%);
-  @include fixedWidth(100%);
+.bar {
   display: flex;
-  flex-direction: column;
-  overflow: hidden;
-  scroll-behavior: smooth;
-}
-
-router-outlet {
-  display: none;
-}
-
-header {
-  position: fixed;
-  top: 0;
-  display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
   align-items: center;
-  background: $color-medium;
-  @include fixedWidth(100%);
-  @include fixedHeight($header-height);
-
-  > a {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    margin: 0;
-    font-size: calc(#{$responsive-unit} * 12);
-    font-family: sans-serif;
-    font-weight: bolder;
-    color: $color-dark;
-    text-decoration: none;
-    @include allVendors(transition, all 250ms ease-in-out);
-
-    &:hover {
-      color: $color-white;
-    }
-  }
-
-  nav {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: calc(#{$responsive-unit} * 5);
-    padding: calc(#{$responsive-unit} * 3);
-    width: 100%;
-    background: $color-primary;
-
-    a {
-      font-size: calc(#{$responsive-unit} * 7);
-      font-family: sans-serif;
-      color: $color-white;
-      text-decoration: none;
-      @include allVendors(transition, all 250ms ease-in-out);
-
-      &:hover {
-        color: $color-success;
-      }
-
-      &.active {
-        color: $color-warning;
-      }
-
-      &.active:hover {
-        color: $color-danger;
-      }
-    }
-  }
+  gap: var(--shy-space-4);
+  padding: var(--shy-space-3) var(--shy-space-6);
+  background: var(--shy-color-surface);
+  border-block-end: var(--shy-border-width) solid var(--shy-color-line);
 }
 
-#main-content {
-  @include fixedWidth(100%);
-  margin-top: $header-height;
-  margin-bottom: $footer-height;
-  min-height: $default-content-height;
-  background: $color-dark;
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--shy-space-2);
+  margin-inline-end: auto;
+  font-family: var(--shy-font-family-mono);
+  color: var(--shy-color-primary-text);
+}
+
+.devices {
+  display: flex;
+  gap: var(--shy-space-1);
+}
+
+.hint {
+  color: var(--shy-color-text-muted);
+  font-size: var(--shy-text-sm);
+  font-variant-numeric: tabular-nums;
+}
+
+.stage {
+  display: grid;
+  place-items: center;
+  padding: var(--shy-space-6);
+  min-block-size: 0;
   overflow: auto;
+  background: var(--shy-color-surface-sunken, var(--shy-color-bg));
 }
 
-footer {
-  position: fixed;
-  bottom: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: $color-medium;
-  @include fixedWidth(100%);
-  @include fixedHeight($footer-height);
+.device {
+  overflow: hidden;
+  border: var(--shy-border-width-thick, var(--shy-border-width)) solid var(--shy-color-border);
+  border-radius: var(--shy-radius-lg);
+  box-shadow: var(--shy-shadow-3);
+  background: var(--shy-color-bg);
 
-  h2 {
-    font-size: calc(#{$responsive-unit} * 7);
-    text-align: center;
-    font-family: sans-serif;
+  iframe {
+    display: block;
+    border: 0;
+    transform-origin: 0 0;
+  }
+}
 
-    #heart {
-      color: $color-danger;
+.title {
+  color: inherit;
+  font-weight: var(--shy-weight-semibold);
+  text-decoration: none;
+}
+
+.menu {
+  padding: var(--shy-space-4);
+
+  ul {
+    list-style: none;
+    margin: 0 0 var(--shy-space-4);
+    padding: 0;
+  }
+
+  .group {
+    margin: var(--shy-space-4) var(--shy-space-3) var(--shy-space-2);
+    color: var(--shy-color-text-muted);
+  }
+
+  a {
+    display: flex;
+    align-items: center;
+    gap: var(--shy-space-3);
+    min-block-size: var(--shy-size-control-md);
+    padding-inline: var(--shy-space-3);
+    border-radius: var(--shy-radius-md);
+    color: var(--shy-color-text);
+    text-decoration: none;
+
+    &:focus-visible {
+      @include focus-ring;
     }
 
-    a {
-      color: $color-danger;
-      font-family: monospace;
-      @include allVendors(transition, all 250ms ease-in-out);
-
-      &:hover {
-        color: $color-tertiary;
-      }
+    &.active {
+      background: var(--shy-color-primary-soft);
+      color: var(--shy-color-primary-text);
+      font-weight: var(--shy-weight-medium);
     }
   }
+}
+
+.foot {
+  color: var(--shy-color-text-muted);
+  font-size: var(--shy-text-sm);
 }
