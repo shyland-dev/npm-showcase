@@ -1,0 +1,26 @@
+.col {
+  display: grid;
+  gap: var(--shy-space-4);
+  inline-size: 100%;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--shy-space-3);
+}
+
+.stack {
+  display: flex;
+  align-items: stretch;
+  gap: var(--shy-space-4);
+  min-block-size: calc(var(--shy-responsive-unit) * 20);
+}
+
+.cards {
+  display: grid;
+  gap: var(--shy-space-4);
+  inline-size: 100%;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, calc(var(--shy-responsive-unit) * 70)), 1fr));
+}

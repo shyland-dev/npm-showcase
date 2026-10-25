@@ -1,0 +1,16 @@
+.col {
+  display: grid;
+  gap: var(--shy-space-4);
+  inline-size: 100%;
+}
+
+.pane {
+  padding: var(--shy-space-4);
+  color: var(--shy-color-text-muted);
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--shy-space-3);
+}

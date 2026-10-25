@@ -1,0 +1,32 @@
+.col {
+  display: grid;
+  gap: var(--shy-space-4);
+  inline-size: 100%;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--shy-space-3);
+}
+
+.spin {
+  display: grid;
+  justify-items: center;
+  gap: var(--shy-space-2);
+  font-size: var(--shy-text-xs);
+  color: var(--shy-color-text-muted);
+}
+
+.profile {
+  display: flex;
+  align-items: center;
+  gap: var(--shy-space-4);
+  inline-size: 100%;
+}
+
+.grow {
+  flex: 1;
+  min-inline-size: 0;
+}

@@ -1,0 +1,22 @@
+form {
+  display: grid;
+  gap: var(--shy-space-5);
+  inline-size: 100%;
+}
+
+.col {
+  display: grid;
+  gap: var(--shy-space-4);
+  inline-size: 100%;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--shy-space-3);
+}
+
+.value {
+  color: var(--shy-color-text-muted);
+  font-size: var(--shy-text-sm);
+}

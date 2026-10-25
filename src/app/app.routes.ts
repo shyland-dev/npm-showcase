@@ -1,10 +1,18 @@
 import { Routes } from '@angular/router';
 
 export const routes: Routes = [
-  { path: '', redirectTo: 'home', pathMatch: 'full' },
-
-  { path: 'home', loadComponent: () => import('./pages/home/home').then((m) => m.Home) },
-  { path: 'icons', loadComponent: () => import('./pages/icons/icons').then((m) => m.Icons) },
-
-  { path: '**', redirectTo: 'home', pathMatch: 'full' },
+  { path: '', redirectTo: 'visao-geral', pathMatch: 'full' },
+  { path: 'visao-geral', title: 'Visão geral', loadComponent: () => import('./pages/overview/overview').then((m) => m.Overview) },
+  { path: 'acoes', title: 'Ações', loadComponent: () => import('./pages/actions/actions').then((m) => m.Actions) },
+  { path: 'formularios', title: 'Formulários', loadComponent: () => import('./pages/forms/forms').then((m) => m.Forms) },
+  { path: 'feedback', title: 'Feedback', loadComponent: () => import('./pages/feedback/feedback').then((m) => m.Feedback) },
+  { path: 'sobreposicoes', title: 'Sobreposições', loadComponent: () => import('./pages/overlays/overlays').then((m) => m.Overlays) },
+  { path: 'navegacao', title: 'Navegação', loadComponent: () => import('./pages/navigation/navigation').then((m) => m.Navigation) },
+  { path: 'dados', title: 'Dados', loadComponent: () => import('./pages/data/data').then((m) => m.Data) },
+  { path: 'icones', title: 'Ícones', loadComponent: () => import('./pages/icons/icons').then((m) => m.Icons) },
+  { path: 'caso-dashboard', title: 'Caso: Dashboard', loadComponent: () => import('./pages/cases/dashboard').then((m) => m.CaseDashboard) },
+  { path: 'caso-configuracoes', title: 'Caso: Configurações', loadComponent: () => import('./pages/cases/settings').then((m) => m.CaseSettings) },
+  { path: 'caso-checkout', title: 'Caso: Checkout', loadComponent: () => import('./pages/cases/checkout').then((m) => m.CaseCheckout) },
+  { path: 'caso-inbox', title: 'Caso: Caixa de entrada', loadComponent: () => import('./pages/cases/inbox').then((m) => m.CaseInbox) },
+  { path: '**', redirectTo: 'visao-geral' },
 ];

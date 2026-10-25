@@ -1,0 +1,85 @@
+<div class="page">
+  <app-page-header title="Dados" summary="Exibição de informação: tabela com ordenação, seleção e paginação, listas, avatares, cards e divisores." [sections]="sections" />
+
+  <div class="demos">
+    <app-demo class="wide" anchor="table" title="Table" description="Modo declarativo: ordenação (clique no cabeçalho), seleção por linha, paginação e estado vazio. Em telas estreitas rola na horizontal dentro da região." code='<shy-table [rows]="rows" rowKey="id" selectable [(sort)]="sort" [pageSize]="6">…</shy-table>'>
+      <div class="col">
+        <p class="shy-small">{{ selected().length }} selecionada(s) · total {{ selectedTotal() }}</p>
+        <shy-table [rows]="invoices()" rowKey="id" label="Faturas" caption="Faturas" [striped]="true" [selectable]="true" [(selection)]="selected" [(sort)]="sort" [pageSize]="6" [(page)]="page" selectAllLabel="Selecionar todas" selectRowLabel="Selecionar linha" paginationLabel="Paginação das faturas">
+          <shy-column key="id" header="Fatura" [rowHeader]="true" [sortable]="true" />
+          <shy-column key="customer" header="Cliente" [sortable]="true" />
+          <shy-column key="status" header="Status">
+            <ng-template shyCell let-row
+              ><shy-badge [intent]="statusIntent(row)" [dot]="true">{{ row.status }}</shy-badge></ng-template
+            >
+          </shy-column>
+          <shy-column key="due" header="Vencimento" />
+          <shy-column key="total" header="Total" [sortable]="true" [numeric]="true">
+            <ng-template shyCell let-value="value">{{ brl(value) }}</ng-template>
+          </shy-column>
+        </shy-table>
+        <shy-table [rows]="empty()" label="Vazia" emptyHeading="Nenhuma fatura" emptyDescription="Quando houver, elas aparecem aqui.">
+          <shy-column key="id" header="Fatura" />
+          <shy-column key="customer" header="Cliente" />
+        </shy-table>
+      </div>
+    </app-demo>
+
+    <app-demo anchor="list" title="List" description="Estática, interativa (botão nativo) e com seleção." code='<shy-list-item interactive [selected]="sel" (activated)="pick()">Ana</shy-list-item>'>
+      <div class="col">
+        <shy-list aria-label="Equipe">
+          @for (m of team; track m.id) {
+            <shy-list-item [interactive]="true" [selected]="member() === m.id" (activated)="member.set(m.id)">
+              <shy-avatar slot="start" [name]="m.name" size="sm" />
+              {{ m.name }}
+              <span slot="secondary">{{ m.email }}</span>
+              <shy-badge slot="end" size="sm">{{ m.role }}</shy-badge>
+            </shy-list-item>
+          }
+        </shy-list>
+        <shy-list aria-label="Atalhos">
+          <shy-list-item href="https://github.com/shyland-dev/npm" target="_blank"><shy-icon slot="start" name="link-45deg" />Repositório</shy-list-item>
+          <shy-list-item><shy-icon slot="start" name="clock" />Item estático<span slot="secondary">sem ação</span></shy-list-item>
+          <shy-list-item [interactive]="true" [disabled]="true"><shy-icon slot="start" name="lock" />Desabilitado</shy-list-item>
+        </shy-list>
+      </div>
+    </app-demo>
+
+    <app-demo anchor="avatar" title="Avatar" description="Imagem → iniciais → ícone." code='<shy-avatar name="Ana Souza" size="lg" />'>
+      <div class="col">
+        <div class="row">
+          @for (s of sizes; track s) {
+            <shy-avatar name="Ana Souza" [size]="s" />
+          }
+        </div>
+        <div class="row">
+          <shy-avatar name="Bruno Lima" shape="rounded" size="lg" />
+          <shy-avatar label="Visitante" size="lg" />
+          <shy-avatar src="data:image/png;base64,AA==" name="Carla Dias" size="lg" />
+        </div>
+      </div>
+    </app-demo>
+
+    <app-demo class="wide" anchor="card" title="Card" description="Estático com header/footer e clicáveis (links e botões nativos)." code='<a shyCard href="/x"><span slot="header">Título</span>Corpo</a>'>
+      <div class="cards">
+        @for (e of [0, 1, 2, 3]; track e) {
+          <shy-card [elevation]="$any(e)">
+            <span slot="header">Elevação {{ e }}</span>
+            Conteúdo do card.
+            <span slot="footer" class="shy-small">Rodapé</span>
+          </shy-card>
+        }
+        <a shyCard href="https://github.com/shyland-dev/npm" target="_blank" rel="noopener"><span slot="header">Link</span>Card inteiro clicável (a).</a>
+        <button shyCard type="button" (click)="member.set('bruno')"><span slot="header">Botão</span>Card inteiro clicável (button).</button>
+      </div>
+    </app-demo>
+
+    <app-demo anchor="divider" title="Divider">
+      <div class="col">
+        <shy-divider />
+        <shy-divider>ou</shy-divider>
+        <div class="stack"><span>Esquerda</span><shy-divider orientation="vertical" /><span>Direita</span></div>
+      </div>
+    </app-demo>
+  </div>
+</div>

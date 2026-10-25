@@ -1,0 +1,75 @@
+<div class="page">
+  <app-page-header title="Sobreposições" summary="Tudo roda no OverlayService: top layer nativo, foco preso nos modais, Esc só fecha a camada de cima e o foco volta a quem abriu." [sections]="sections" />
+
+  <div class="demos">
+    <app-demo anchor="dialog" title="Dialog" description="Conteúdo próprio, confirmação (alertdialog) e alerta." code="dialogs.confirm({ title: 'Excluir?', message: '…', intent: 'danger' })">
+      <div class="row">
+        <button shyButton (click)="rename()"><shy-icon slot="start" name="pencil" />Renomear</button>
+        <button shyButton intent="danger" variant="soft" (click)="remove()"><shy-icon slot="start" name="trash" />Excluir…</button>
+        <button shyButton variant="outline" (click)="notice()">Alerta</button>
+        <p class="result" aria-live="polite">
+          Projeto: <strong>{{ projectName() }}</strong
+          >{{ result() ? ' · ' + result() : '' }}
+        </p>
+      </div>
+    </app-demo>
+
+    <app-demo anchor="drawer" title="Drawer" description="Painel lateral (ou de cima/baixo) com filtros. Clicar fora fecha." code="drawers.open(FiltersDrawer, { side: 'end' })">
+      <div class="row">
+        <button shyButton variant="outline" (click)="openDrawer('start')"><shy-icon slot="start" name="arrow-left" />Início</button>
+        <button shyButton variant="outline" (click)="openDrawer('end')">Fim<shy-icon slot="end" name="arrow-right" /></button>
+        <button shyButton variant="outline" (click)="openDrawer('top')">Topo</button>
+        <button shyButton variant="outline" (click)="openDrawer('bottom')">Base</button>
+      </div>
+    </app-demo>
+
+    <app-demo anchor="popover" title="Popover" description="Painel não modal ancorado; vira para o outro lado se faltar espaço." code='<button shyButton [shyPopover]="tpl" #p="shyPopover">Abrir</button>'>
+      <div class="row">
+        <button shyButton variant="outline" [shyPopover]="info" shyPopoverPlacement="bottom-start" #pop="shyPopover"><shy-icon slot="start" name="pencil" />Editar nome</button>
+        <ng-template #info>
+          <shy-popover>
+            <div class="pop">
+              <shy-form-field label="Nome rápido"><input shyInput [ngModel]="projectName()" (ngModelChange)="projectName.set($event)" /></shy-form-field>
+              <button shyButton size="sm" (click)="pop.close()">Pronto</button>
+            </div>
+          </shy-popover>
+        </ng-template>
+        <button shyButton variant="outline" [shyPopover]="info2" shyPopoverPlacement="top" #pop2="shyPopover">Acima</button>
+        <ng-template #info2><shy-popover>Aparece acima do botão.</shy-popover></ng-template>
+      </div>
+    </app-demo>
+
+    <app-demo anchor="menu" title="Menu" description="Padrão APG de menu button: setas, Home/End e busca por letra." code='<button shyButton [shyMenu]="actions">Ações</button>'>
+      <div class="row">
+        <button shyButton variant="soft" [shyMenu]="actions">Ações<shy-icon slot="end" name="chevron-down" /></button>
+        <ng-template #actions>
+          <shy-menu label="Ações do projeto">
+            <button shyMenuItem (click)="say('Editar')"><shy-icon slot="start" name="pencil" />Editar</button>
+            <button shyMenuItem (click)="say('Compartilhar')"><shy-icon slot="start" name="share" />Compartilhar</button>
+            <button shyMenuItem (click)="say('Download iniciado')"><shy-icon slot="start" name="download" />Baixar</button>
+            <shy-divider />
+            <button shyMenuItem disabled>Arquivar (indisponível)</button>
+            <button shyMenuItem (click)="remove()"><shy-icon slot="start" name="trash" />Excluir…</button>
+          </shy-menu>
+        </ng-template>
+
+        <button shyIconButton label="Mais opções" [shyMenu]="more"><shy-icon name="three-dots-vertical" /></button>
+        <ng-template #more>
+          <shy-menu label="Mais opções">
+            <a shyMenuItem href="https://github.com/shyland-dev/npm" target="_blank" rel="noopener">Repositório</a>
+            <button shyMenuItem (click)="say('Copiado')">Copiar link</button>
+          </shy-menu>
+        </ng-template>
+      </div>
+    </app-demo>
+
+    <app-demo anchor="tooltip" title="Tooltip" description="Complementa o nome, nunca o substitui. Abre no hover (500 ms) e na hora no foco por teclado; não abre em toque.">
+      <div class="row">
+        @for (p of placements; track p) {
+          <button shyButton variant="outline" [shyTooltip]="'Dica ' + p" [shyTooltipPlacement]="p">{{ p }}</button>
+        }
+        <button shyIconButton label="Excluir" shyTooltip="Excluir o item selecionado"><shy-icon name="trash" /></button>
+      </div>
+    </app-demo>
+  </div>
+</div>

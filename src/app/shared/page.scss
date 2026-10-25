@@ -1,0 +1,30 @@
+// Página: coluna única em retrato, duas colunas de demos em paisagem. Sem @media de largura.
+:host {
+  display: block;
+  padding: var(--shy-space-6);
+}
+
+.page {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--shy-space-8);
+  max-inline-size: calc(var(--shy-responsive-unit) * 520);
+  margin-inline: auto;
+}
+
+.demos {
+  display: grid;
+  gap: var(--shy-space-8);
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, calc(var(--shy-responsive-unit) * 150)), 1fr));
+  align-items: start;
+}
+
+.wide {
+  grid-column: 1 / -1;
+}
+
+@media (orientation: portrait) {
+  .demos {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

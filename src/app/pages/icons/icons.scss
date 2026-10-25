@@ -1,92 +1,40 @@
-@use '../../../styles' as *;
-@use '@shyland-dev/ui/styles' as *;
-@use 'sass:color';
-
-$input-margin-block: calc(#{$responsive-unit} * 2);
-$input-height: calc(#{$responsive-unit} * 15);
-$input-total-height: calc(#{$input-height} + #{$input-margin-block} * 2);
-
-$grid-margin-block: calc(#{$responsive-unit} * 2);
-$grid-height: calc(#{$default-content-height} - #{$input-total-height} - #{$grid-margin-block} * 2);
-$grid-total-height: calc(#{$grid-height} + #{$grid-margin-block} * 2);
-
-:host {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  color: $color-black;
+.grid {
+  display: grid;
+  gap: var(--shy-space-3);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  grid-template-columns: repeat(auto-fill, minmax(calc(var(--shy-responsive-unit) * 48), 1fr));
 }
 
-.icon-search {
-  border: none;
-  outline: none;
-  padding: calc(#{$responsive-unit} * 4);
-  border-radius: calc(#{$responsive-unit} * 2);
-  background-color: $color-danger;
-  border-width: calc(#{$responsive-unit} * 1);
-  border-color: $color-white;
-  border-style: solid;
-  width: calc(#{$dynamic-width-unit} * 50);
-  font-size: calc(#{$responsive-unit} * 8);
-  margin-block: $input-margin-block;
-  height: $input-height;
-  color: $color-white;
+.tile {
+  display: grid;
+  justify-items: center;
+  gap: var(--shy-space-2);
+  inline-size: 100%;
+  padding: var(--shy-space-3);
+  border: var(--shy-border-width) solid var(--shy-color-border);
+  border-radius: var(--shy-radius-md);
+  background: var(--shy-color-surface);
+  color: var(--shy-color-text);
+  font: inherit;
+  cursor: pointer;
 
-  &::placeholder {
-    color: color.adjust($color-white, $alpha: -0.3);
+  shy-icon {
+    --shy-icon-size: calc(var(--shy-responsive-unit) * 12);
   }
-}
 
-.icons-grid {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: calc(#{$responsive-unit} * 6);
-  margin-block: $grid-margin-block;
-  overflow-y: auto;
-  height: $grid-height;
-
-  .icon-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-    background-color: color.adjust($color-danger, $lightness: 32.5%);
-    padding: calc(#{$responsive-unit} * 5);
-    border-radius: calc(#{$responsive-unit} * 2);
-    border-color: $color-danger;
-    border-width: calc(#{$responsive-unit} * 1);
-    border-style: solid;
-    width: calc(#{$responsive-unit} * 95);
-    height: calc(#{$responsive-unit} * 50);
-    cursor: pointer;
-    @include allVendors(transition, all 250ms ease-in-out);
-
-    &:hover {
-      background-color: color.adjust($color-danger, $lightness: 20%);
-    }
-
-    shy-icon {
-      --shyIconSize: calc(#{$responsive-unit} * 17);
-
-      color: $color-danger;
-    }
-
-    .icon-name {
-      font-size: calc(#{$responsive-unit} * 6);
-      text-align: center;
-    }
+  span {
+    max-inline-size: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: var(--shy-color-text-muted);
+    font-size: var(--shy-text-xs);
   }
-}
 
-shy-snackbar {
-  --shySnackbarBackground: #{$color-success};
-  --shySnackbarColor: #{$color-white};
-  --shySnackbarWidth: calc(#{$responsive-unit} * 110);
-  --shySnackbarBorderRadius: calc(#{$responsive-unit} * 2);
-  --shySnackbarFontFamily: sans-serif;
-  --shySnackbarFontSize: calc(#{$responsive-unit} * 7);
-  --shySnackbarIconSize: calc(#{$responsive-unit} * 8);
-  --shySnackbarOffset: calc(#{$responsive-unit} * 15);
+  &:focus-visible {
+    outline: var(--shy-focus-ring-width) solid var(--shy-color-focus);
+    outline-offset: var(--shy-focus-ring-offset);
+  }
 }

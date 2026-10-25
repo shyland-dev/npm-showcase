@@ -1,0 +1,102 @@
+<div class="page">
+  <app-page-header title="Feedback" summary="Mensagens, estados de carregamento e notificações. Nada depende só de cor." [sections]="sections" />
+
+  <div class="demos">
+    <app-demo class="wide" anchor="alert" title="Alert" description="Mensagem destacada na página (não é toast). Com ação, dispensável e urgente.">
+      <div class="col">
+        <shy-alert intent="info" heading="Novidade">Agora o catálogo funciona em celular, tablet e TV.</shy-alert>
+        <shy-alert intent="success" heading="Tudo certo">Seu backup foi concluído.</shy-alert>
+        <shy-alert intent="warning" heading="Atenção">Seu plano vence em 3 dias.<button slot="action" shyButton size="sm" variant="outline" intent="warning">Renovar</button></shy-alert>
+        @if (alertVisible()) {
+          <shy-alert intent="danger" heading="Falha ao salvar" [urgent]="true" [dismissible]="true" dismissLabel="Fechar aviso" (dismissed)="alertVisible.set(false)">Verifique sua conexão.<button slot="action" shyButton size="sm" variant="outline" intent="danger">Tentar de novo</button></shy-alert>
+        } @else {
+          <button shyButton size="sm" variant="soft" (click)="alertVisible.set(true)">Mostrar alerta de erro de novo</button>
+        }
+      </div>
+    </app-demo>
+
+    <app-demo class="wide" anchor="badge" title="Badge" description="Intenções × estilos, contador, ponto e removível." code='<shy-badge intent="danger" [count]="150" />'>
+      <div class="col">
+        @for (v of variants; track v) {
+          <div class="row">
+            @for (i of intents; track i) {
+              <shy-badge [intent]="i" [variant]="v">{{ i }}</shy-badge>
+            }
+          </div>
+        }
+        <div class="row">
+          <shy-badge intent="danger" [count]="7" />
+          <shy-badge intent="danger" [count]="150" />
+          <shy-badge intent="success" [dot]="true">Online</shy-badge>
+          <shy-badge intent="warning" [dot]="true" size="sm">Pendente</shy-badge>
+          @for (t of tags(); track t) {
+            <shy-badge [removable]="true" [removeLabel]="'Remover ' + t" (removed)="removeTag(t)">{{ t }}</shy-badge>
+          }
+        </div>
+      </div>
+    </app-demo>
+
+    <app-demo class="wide" anchor="spinner" title="Spinner" description="8 variações em 4 tamanhos. Com movimento reduzido, só pulsam em opacidade.">
+      <div class="row">
+        @for (v of spinners; track v) {
+          <div class="spin"><shy-spinner [variant]="v" /> {{ v }}</div>
+        }
+      </div>
+      <div class="row"><shy-spinner size="xs" /><shy-spinner size="sm" /><shy-spinner size="md" /><shy-spinner size="lg" label="Carregando pedidos" /></div>
+    </app-demo>
+
+    <app-demo anchor="progress" title="Progress" description="Linear e circular, determinado e indeterminado.">
+      <div class="col">
+        <shy-progress [value]="progress()" label="Envio" />
+        <div class="row">
+          <button shyButton size="sm" (click)="startUpload()">Simular envio</button>
+          <span class="shy-small">{{ progress() }}%</span>
+        </div>
+        <shy-progress label="Processando" />
+        <shy-progress [value]="70" size="sm" label="Fino" />
+        <shy-progress [value]="55" size="lg" label="Grosso" />
+        <div class="row">
+          <shy-progress-circular label="Carregando" />
+          <shy-progress-circular [value]="progress()" label="Envio" />
+          <shy-progress-circular [value]="82" size="lg" label="Meta" />
+        </div>
+      </div>
+    </app-demo>
+
+    <app-demo anchor="skeleton" title="Skeleton" description="Placeholder do conteúdo. Alterne para ver o resultado carregado.">
+      <div class="col">
+        <button shyButton size="sm" variant="outline" (click)="loading.set(!loading())">{{ loading() ? 'Carregar conteúdo' : 'Voltar ao skeleton' }}</button>
+        <section class="profile" [attr.aria-busy]="loading()">
+          @if (loading()) {
+            <shy-skeleton shape="circle" />
+            <div class="grow"><shy-skeleton [lines]="3" /></div>
+          } @else {
+            <shy-avatar name="Ana Souza" size="lg" />
+            <div class="grow">
+              <strong>Ana Souza</strong>
+              <p class="shy-small">Engenheira de software · Ribeirão Preto, SP</p>
+            </div>
+          }
+        </section>
+        <shy-skeleton shape="rect" animation="still" />
+      </div>
+    </app-demo>
+
+    <app-demo anchor="snackbar" title="Snackbar" description="Toasts via serviço; fila de até 3, pausam ao focar e aceitam ação." code="inject(SnackbarService).show('Salvo', { intent: 'success' });">
+      <div class="row">
+        <button shyButton variant="soft" intent="neutral" (click)="toast('neutral')">Neutro</button>
+        <button shyButton variant="soft" intent="info" (click)="toast('info')">Info</button>
+        <button shyButton variant="soft" intent="success" (click)="toast('success')">Sucesso</button>
+        <button shyButton variant="soft" intent="warning" (click)="toast('warning')">Aviso</button>
+        <button shyButton variant="soft" intent="danger" (click)="toast('danger')">Erro</button>
+        <button shyButton variant="outline" (click)="undoToast()">Excluir com desfazer</button>
+      </div>
+    </app-demo>
+
+    <app-demo anchor="empty" title="EmptyState" description="Explica por que não há nada e oferece o próximo passo.">
+      <shy-empty-state heading="Nenhum projeto ainda" icon="inbox"
+        >Crie seu primeiro projeto para começar.<button slot="action" shyButton><shy-icon slot="start" name="plus-lg" />Novo projeto</button></shy-empty-state
+      >
+    </app-demo>
+  </div>
+</div>

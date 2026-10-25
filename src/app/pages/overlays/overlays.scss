@@ -1,0 +1,19 @@
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--shy-space-3);
+}
+
+.result {
+  inline-size: 100%;
+  margin: 0;
+  color: var(--shy-color-text-muted);
+  font-size: var(--shy-text-sm);
+}
+
+.pop {
+  display: grid;
+  gap: var(--shy-space-3);
+  min-inline-size: calc(var(--shy-responsive-unit) * 90);
+}

@@ -1,0 +1,79 @@
+<div class="page">
+  <app-page-header title="Navegação" summary="Padrões APG: roving tabindex, setas, Home/End e estados anunciados." [sections]="sections" />
+
+  <div class="demos">
+    <app-demo anchor="tabs" title="Tabs" description="Automático (setas selecionam) e vertical com ativação manual." code='<shy-tabs label="Conta" [(value)]="tab"><shy-tab value="a" label="A">…</shy-tab></shy-tabs>'>
+      <div class="col">
+        <shy-tabs label="Conta" [(value)]="tab">
+          <shy-tab value="profile" label="Perfil"><p class="pane">Dados pessoais e foto.</p></shy-tab>
+          <shy-tab value="password" label="Senha" [disabled]="true"><p class="pane">Indisponível.</p></shy-tab>
+          <shy-tab value="plan" label="Plano"><p class="pane">Você está no plano Pro.</p></shy-tab>
+          <shy-tab value="billing" label="Cobrança"><p class="pane">Faturas e meios de pagamento.</p></shy-tab>
+        </shy-tabs>
+        <shy-tabs label="Seções" orientation="vertical" activation="manual" [(value)]="verticalTab">
+          <shy-tab value="a" label="Visão geral"><p class="pane">Enter/Espaço seleciona.</p></shy-tab>
+          <shy-tab value="b" label="Atividade"><p class="pane">Últimas ações.</p></shy-tab>
+        </shy-tabs>
+      </div>
+    </app-demo>
+
+    <app-demo anchor="accordion" title="Accordion" description="Abrir um fecha os outros; com multiple, vários.">
+      <div class="col">
+        <shy-accordion>
+          @for (f of faq; track f.q; let i = $index) {
+            <shy-accordion-item [label]="f.q" [open]="i === 0"
+              ><p class="pane">{{ f.a }}</p></shy-accordion-item
+            >
+          }
+          <shy-accordion-item label="Desabilitado" [disabled]="true"><p class="pane">—</p></shy-accordion-item>
+        </shy-accordion>
+        <shy-accordion [multiple]="true">
+          <shy-accordion-item label="Vários abertos A" [(open)]="open"
+            ><p class="pane">Aberto: {{ open() }}</p></shy-accordion-item
+          >
+          <shy-accordion-item label="Vários abertos B"><p class="pane">Conteúdo B</p></shy-accordion-item>
+        </shy-accordion>
+      </div>
+    </app-demo>
+
+    <app-demo anchor="breadcrumb" title="Breadcrumb" description="Links reais e página atual com aria-current.">
+      <shy-breadcrumb label="Você está em">
+        <shy-breadcrumb-item><a routerLink="/visao-geral">Início</a></shy-breadcrumb-item>
+        <shy-breadcrumb-item><a routerLink="/dados">Dados</a></shy-breadcrumb-item>
+        <shy-breadcrumb-item [current]="true">Tabela</shy-breadcrumb-item>
+      </shy-breadcrumb>
+    </app-demo>
+
+    <app-demo anchor="pagination" title="Pagination" description="Reticências inteligentes; 20 páginas, na página {{ page() }}.">
+      <div class="col">
+        <shy-pagination label="Resultados" previousLabel="Página anterior" nextLabel="Próxima página" pageLabel="Página" [pageCount]="20" [(page)]="page" />
+        <shy-pagination label="Poucos" [pageCount]="3" [page]="2" [disabled]="true" />
+      </div>
+    </app-demo>
+
+    <app-demo class="wide" anchor="stepper" title="Stepper" description="Só indica o progresso (sem painéis): você decide o conteúdo a partir do valor." code='<shy-stepper label="Checkout" [(value)]="step"><shy-step label="Conta" /></shy-stepper>'>
+      <div class="col">
+        <shy-stepper label="Compra" [(value)]="step" completeLabel="Concluído" errorLabel="Erro">
+          <shy-step label="Conta" description="Seus dados" />
+          <shy-step label="Endereço" />
+          <shy-step label="Pagamento" [error]="step() === 2" />
+          <shy-step label="Revisão" />
+        </shy-stepper>
+        <div class="row">
+          <button shyButton variant="outline" size="sm" [disabled]="step() === 0" (click)="step.set(step() - 1)">Voltar</button>
+          <button shyButton size="sm" [disabled]="step() === 3" (click)="step.set(step() + 1)">Avançar</button>
+        </div>
+        <shy-stepper label="Pedido" orientation="vertical" [linear]="true" [(value)]="verticalStep">
+          <shy-step label="Pedido feito" description="Hoje, 10:42" />
+          <shy-step label="Separação" />
+          <shy-step label="Em transporte" description="Previsão: amanhã" />
+          <shy-step label="Entregue" />
+        </shy-stepper>
+      </div>
+    </app-demo>
+
+    <app-demo class="wide" anchor="shell" title="AppShell" description="Este próprio catálogo é um AppShell: header, sidebar e rodapé. Em retrato a navegação vira Drawer (botão no cabeçalho); em paisagem fica fixa. Gire o dispositivo na barra superior para ver as duas versões.">
+      <p class="pane">Landmarks: banner, navigation, main e contentinfo, com link “Pular para o conteúdo” como primeiro item focável.</p>
+    </app-demo>
+  </div>
+</div>
