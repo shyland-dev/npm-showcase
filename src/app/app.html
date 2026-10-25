@@ -35,7 +35,7 @@
 }
 
 <ng-template #shell>
-  <shy-app-shell [sidebarMode]="portrait() ? 'drawer' : 'inline'" sidebarLabel="Componentes" menuLabel="Abrir navegação" skipLabel="Pular para o conteúdo">
+  <shy-app-shell sidebarLabel="Componentes" menuLabel="Abrir navegação" skipLabel="Pular para o conteúdo">
     <a slot="header" class="title" routerLink="/visao-geral">Catálogo de componentes</a>
     <nav slot="sidebar" class="menu" aria-label="Catálogo">
       @for (g of nav; track g.label) {
