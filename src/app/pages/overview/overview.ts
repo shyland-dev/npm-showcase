@@ -11,7 +11,7 @@ import { PageHeader } from '../../shared/page-header';
   styleUrl: '../../shared/page.scss',
   template: `
     <div class="page">
-      <app-page-header title="@shyland-dev/ui" summary="Catálogo de todos os componentes em casos reais. Use a barra do topo para simular celular, tablet, notebook, desktop e TV; o layout só muda entre retrato e paisagem." />
+      <app-page-header title="@shyland-dev/ui" summary="Catálogo de todos os componentes da ui 1.3 e dos helpers da utils 0.1 em exemplos reais e dinâmicos. Use a barra do topo para simular celular, tablet, notebook, desktop e TV; o layout só muda entre retrato e paisagem." />
 
       @for (g of groups; track g.label) {
         <section>

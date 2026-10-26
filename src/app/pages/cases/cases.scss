@@ -170,3 +170,87 @@
     grid-template-columns: minmax(0, 1fr);
   }
 }
+
+// ---- Tabela com filtros ----
+.filters {
+  display: grid;
+  gap: var(--shy-space-4);
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, calc(var(--shy-responsive-unit) * 90)), 1fr));
+  align-items: start;
+}
+
+.push {
+  margin-inline-start: auto;
+}
+
+// ---- Tarefas (fluxo otimista) ----
+.tasks {
+  display: grid;
+  gap: var(--shy-space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  li {
+    display: flex;
+    align-items: center;
+    gap: var(--shy-space-3);
+    padding: var(--shy-space-2) var(--shy-space-3);
+    border: var(--shy-border-width) solid var(--shy-color-line);
+    border-radius: var(--shy-radius-md);
+    background: var(--shy-color-surface);
+  }
+
+  .done .title {
+    color: var(--shy-color-text-muted);
+    text-decoration: line-through;
+  }
+
+  .pending {
+    opacity: 0.6;
+  }
+}
+
+.add {
+  display: flex;
+  gap: var(--shy-space-3);
+  align-items: end;
+
+  shy-form-field {
+    flex: 1;
+    min-inline-size: 0;
+  }
+}
+
+// ---- Painel ao vivo ----
+.spark {
+  display: block;
+  inline-size: 100%;
+  block-size: calc(var(--shy-responsive-unit) * 24);
+  overflow: visible;
+
+  polyline {
+    fill: none;
+    stroke: var(--shy-color-primary);
+    stroke-width: 2;
+    stroke-linejoin: round;
+    vector-effect: non-scaling-stroke;
+  }
+}
+
+.events {
+  display: grid;
+  gap: var(--shy-space-1);
+  max-block-size: calc(var(--shy-responsive-unit) * 90);
+  margin: 0;
+  padding: 0;
+  overflow: auto;
+  list-style: none;
+
+  li {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--shy-space-2);
+  }
+}

@@ -14,5 +14,12 @@ export const routes: Routes = [
   { path: 'caso-configuracoes', title: 'Caso: Configurações', loadComponent: () => import('./pages/cases/settings').then((m) => m.CaseSettings) },
   { path: 'caso-checkout', title: 'Caso: Checkout', loadComponent: () => import('./pages/cases/checkout').then((m) => m.CaseCheckout) },
   { path: 'caso-inbox', title: 'Caso: Caixa de entrada', loadComponent: () => import('./pages/cases/inbox').then((m) => m.CaseInbox) },
+  { path: 'novidades', title: 'Novidades da 1.3', loadComponent: () => import('./pages/novidades/novidades').then((m) => m.Novidades) },
+  { path: 'tema', title: 'Tema e tokens', loadComponent: () => import('./pages/foundations/tema').then((m) => m.Tema) },
+  { path: 'utils-logger', title: 'Logger ao vivo', loadComponent: () => import('./pages/utils/logger').then((m) => m.UtilsLogger) },
+  { path: 'utils-helpers', title: 'Helpers da utils', loadComponent: () => import('./pages/utils/helpers').then((m) => m.UtilsHelpers) },
+  { path: 'caso-tabela', title: 'Caso: Tabela com filtros', loadComponent: () => import('./pages/cases/table').then((m) => m.CaseTable) },
+  { path: 'caso-tarefas', title: 'Caso: Tarefas otimistas', loadComponent: () => import('./pages/cases/tasks').then((m) => m.CaseTasks) },
+  { path: 'caso-ao-vivo', title: 'Caso: Painel ao vivo', loadComponent: () => import('./pages/cases/live').then((m) => m.CaseLive) },
   { path: '**', redirectTo: 'visao-geral' },
 ];

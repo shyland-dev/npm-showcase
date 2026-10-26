@@ -1,0 +1,44 @@
+.compare {
+  display: grid;
+  gap: var(--shy-space-4);
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, calc(var(--shy-responsive-unit) * 70)), 1fr));
+}
+
+.box {
+  min-block-size: calc(var(--shy-responsive-unit) * 32);
+  padding: var(--shy-space-4);
+  border: var(--shy-border-width) solid var(--shy-color-border);
+  border-radius: var(--shy-radius-md);
+  background: var(--shy-color-surface);
+
+  h3,
+  p {
+    margin: 0 0 var(--shy-space-2);
+  }
+}
+
+// Sonda: o padding resolve as safe areas para o TS ler com getComputedStyle.
+.probe {
+  position: absolute;
+  visibility: hidden;
+  padding-block-start: var(--shy-safe-area-top);
+  padding-inline-end: var(--shy-safe-area-end);
+  padding-block-end: var(--shy-safe-area-bottom);
+  padding-inline-start: var(--shy-safe-area-start);
+  pointer-events: none;
+}
+
+.insets {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: var(--shy-space-2) var(--shy-space-4);
+  margin: 0;
+
+  dt {
+    color: var(--shy-color-text-muted);
+  }
+
+  dd {
+    margin: 0;
+  }
+}
