@@ -1,0 +1,35 @@
+.controls {
+  display: grid;
+  gap: var(--shy-space-4);
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, calc(var(--shy-responsive-unit) * 70)), 1fr));
+  align-items: start;
+}
+
+.log {
+  display: grid;
+  gap: var(--shy-space-1);
+  max-block-size: calc(var(--shy-responsive-unit) * 120);
+  margin: 0;
+  padding: var(--shy-space-3);
+  overflow: auto;
+  list-style: none;
+  border: var(--shy-border-width) solid var(--shy-color-border);
+  border-radius: var(--shy-radius-md);
+  background: var(--shy-color-surface-sunken);
+
+  li {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: var(--shy-space-2);
+  }
+}
+
+.ns {
+  color: var(--shy-color-primary-text);
+}
+
+.msg {
+  min-inline-size: 0;
+  overflow-wrap: anywhere;
+}

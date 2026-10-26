@@ -25,12 +25,29 @@ export const NAV: NavGroup[] = [
     ],
   },
   {
+    label: 'Novidades e fundamentos',
+    items: [
+      { path: 'novidades', label: 'Novidades da 1.3', icon: 'lightning', summary: 'Swipe, desfazer e promise em toast, Drawer arrastável, Dialog como folha, safe areas e delayedFlag.' },
+      { path: 'tema', label: 'Tema e tokens', icon: 'palette2', summary: 'ThemeService, cores, tipografia, layout e playground de tokens.' },
+    ],
+  },
+  {
+    label: '@shyland-dev/utils',
+    items: [
+      { path: 'utils-logger', label: 'Logger ao vivo', icon: 'terminal', summary: 'createShyLogger, níveis, namespaces, sink próprio e entry de testing.' },
+      { path: 'utils-helpers', label: 'Helpers', icon: 'braces', summary: 'shyStorage, injectShyMediaQuery, shyDebounced, helpers de dev, plataforma e type guards.' },
+    ],
+  },
+  {
     label: 'Casos reais',
     items: [
       { path: 'caso-dashboard', label: 'Dashboard', icon: 'graph-up', summary: 'Métricas, tabela de faturas e atividade.' },
       { path: 'caso-configuracoes', label: 'Configurações', icon: 'gear', summary: 'Perfil, notificações, segurança e plano.' },
       { path: 'caso-checkout', label: 'Checkout', icon: 'bag', summary: 'Stepper com formulário e confirmação.' },
       { path: 'caso-inbox', label: 'Caixa de entrada', icon: 'inbox', summary: 'Lista, filtros em Drawer, menu e desfazer.' },
+      { path: 'caso-tabela', label: 'Tabela com filtros', icon: 'table', summary: 'Busca com debounce, filtros salvos, seleção em massa, CSV e exclusão com desfazer.' },
+      { path: 'caso-tarefas', label: 'Tarefas otimistas', icon: 'list-check', summary: 'Atualização otimista com rollback, promise() e undo().' },
+      { path: 'caso-ao-vivo', label: 'Painel ao vivo', icon: 'activity', summary: 'Métricas em tempo real, sparklines SVG e alerta que atualiza o toast.' },
     ],
   },
 ];

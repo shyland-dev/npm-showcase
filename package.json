@@ -8,7 +8,9 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "test": "ng test --watch=false",
+    "build:dev": "ng build --configuration development"
   },
   "private": true,
   "packageManager": "npm@11.11.0",
@@ -19,7 +21,8 @@
     "@angular/forms": "^21.2.0",
     "@angular/platform-browser": "^21.2.0",
     "@angular/router": "^21.2.0",
-    "@shyland-dev/ui": "^1.2.0",
+    "@shyland-dev/ui": "^1.3.0",
+    "@shyland-dev/utils": "^0.1.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0"
   },

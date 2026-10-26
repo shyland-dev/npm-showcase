@@ -1,0 +1,36 @@
+.queries {
+  display: grid;
+  gap: var(--shy-space-3);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  inline-size: 100%;
+
+  li {
+    display: flex;
+    align-items: center;
+    gap: var(--shy-space-3);
+    padding-block-end: var(--shy-space-2);
+    border-block-end: var(--shy-border-width) solid var(--shy-color-line);
+  }
+
+  code {
+    color: var(--shy-color-text-muted);
+  }
+}
+
+.insets {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: var(--shy-space-2) var(--shy-space-4);
+  margin: 0;
+
+  dt {
+    color: var(--shy-color-text-muted);
+  }
+
+  dd {
+    margin: 0;
+    overflow-wrap: anywhere;
+  }
+}
